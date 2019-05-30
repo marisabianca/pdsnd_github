@@ -75,7 +75,13 @@ def load_data(city, month, day):
     return df
 
 def time_stats(df, city, month, day):
-    """Displays statistics on the most frequent times of travel."""
+    """Displays statistics on the most frequent times of travel.
+
+    Args:
+        df - Pandas Dataframe containing city data filtered by month and day
+        (str) city - name of the city to analyze
+        (str) month - name of the month to filter by or 'all' to apply to month filter
+        (str) day - name of the day of week to filter by, or "all" to apply no day filter"""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
@@ -103,7 +109,10 @@ def time_stats(df, city, month, day):
     print('-'*40)
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
+    """Displays statistics on the most popular stations and trip.
+
+    Args:
+        df - Pandas Dataframe containing city data filtered by month and day"""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
@@ -120,7 +129,11 @@ def station_stats(df):
     print('-'*40)
 
 def trip_duration_stats(df, city):
-    """Displays statistics on the total and average trip duration."""
+    """Displays statistics on the total and average trip duration.
+
+    Args:
+    - df - Pandas Dataframe containing city data filtered by month and day
+    - (str) city - name of the city to analyze"""
 
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
@@ -138,6 +151,10 @@ def trip_duration_stats(df, city):
 
 def user_stats(df, city):
     """Displays statistics on bikeshare users.
+
+    Args:
+    - df - Pandas Dataframe containing city data filtered by month and day
+    - (str) city - name of the city to analyze
 
     Stats include:
     - Types of Users (Subscriber, One-Time Customers)
@@ -172,7 +189,11 @@ def user_stats(df, city):
 
 def see_data(df, city):
     """Displays data for 5 lines of raw data and asks the user if they would like to see 5 more.
-    User inputs 'yes' or 'no' to continue to review data in groups of 5"""
+    User inputs 'yes' or 'no' to continue to review data in groups of 5
+
+    Args:
+    - df - Pandas Dataframe containing city data filtered by month and day
+    - (str) city - name of the city to analyze"""
 
     start_index = 0
     end_index = 5
@@ -188,7 +209,7 @@ def see_data(df, city):
         show_more = input("\nWould you like to review more data? Enter yes or no.\n")
         if show_more.lower() != 'yes':
             break
-                              
+
 def main():
     while True:
         city, month, day = get_filters()

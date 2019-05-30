@@ -195,20 +195,18 @@ def see_data(df, city):
     - df - Pandas Dataframe containing city data filtered by month and day
     - (str) city - name of the city to analyze"""
 
-    start_index = 0
-    end_index = 5
-    countby = 5
+    print("Displaying the first 5 lines of data below:\n")
+
+    show_more = "yes"
+    count = 0
 
     while True:
-        print("\nDisplaying the first 5 lines of data below:\n")
-        print_range = range(start_index, end_index)
-        for i in print_range:
-            print(df.iloc[0:][i:i+1].transpose())
-            start_index += countby
-            end_index += countby
-        show_more = input("\nWould you like to review more data? Enter yes or no.\n")
-        if show_more.lower() != 'yes':
-            break
+        if show_more == "yes":
+            print(df.iloc[count:count + 5])
+            count += 5
+            show_more = input("\nWould you like to review more data? Enter yes or no.\n")
+        elif show_more != 'yes':
+          break
 
 def main():
     while True:

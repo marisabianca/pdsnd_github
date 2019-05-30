@@ -10,8 +10,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 months_list = ['january', 'february', 'march', 'april', 'may', 'june']
 
 def get_filters():
-    """
-    Asks user to specify a city, month, and day to analyze.
+    """Asks user to specify a city, month, and day to analyze.
 
     Returns:
         (str) city - name of the city to analyze
@@ -47,8 +46,7 @@ def get_filters():
     return city, month, day
 
 def load_data(city, month, day):
-    """
-    Loads data for the specified city and filters by month and day if applicable.
+    """Loads data for the specified city and filters by month and day if applicable.
 
     Args:
         (str) city - name of the city to analyze
@@ -58,7 +56,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df = pd.read_csv(CITY_DATA[city])
-    
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['End Time'] = pd.to_datetime(df['End Time'])
     df['month'] = df['Start Time'].dt.month
@@ -66,12 +64,11 @@ def load_data(city, month, day):
     df['hour'] = df['Start Time'].dt.hour
     df['Travel Time'] = df['End Time'] - df['Start Time']
     df['Station Set'] = df['Start Station'] + ' to ' + df['End Station']
-    
-    
+
     if month != 'all':
         filtered_month = months_list.index(month) + 1
         df = df[df['month'] == filtered_month]
-        
+
     if day != 'all':
         df = df[df['day_of_week'] == day.title()]
 
@@ -83,31 +80,27 @@ def time_stats(df, city, month, day):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    
     if month != 'all':
         print("Based on your selection, we are only looking at data from {}.".format(month.title()))
-    else:    
+    else:
         popular_month_num = df['month'].mode()[0]
         popular_month = months_list[popular_month_num-1]
         print("The most popular month for travel in {} is {}.".format(city.title(), popular_month.title()))
 
-
     if day != 'all':
         print("Based on your selection, we are only looking at data for a single day: {}.".format(day.title()))
-    else:    
+    else:
         popular_day = df['day_of_week'].mode()[0]
         print("The most popular day of the week for travel in {} is {}.".format(city.title(), popular_day.title()))
 
-        
     popular_hour = df['hour'].mode()[0]
     if (popular_hour / 12) > 1:
         print("The most popular time to rent a bike in {} is {}pm.".format(city.title(), popular_hour % 12))
     else:
         print("The most popular time to rent a bike in {} is {}am.".format(city.title(), popular_hour))
-    
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)             
+    print('-'*40)
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
@@ -118,14 +111,14 @@ def station_stats(df):
     common_start_station = df['Start Station'].mode()[0]
     common_end_station = df['End Station'].mode()[0]
     common_station_set = df['Station Set'].mode()[0]
-    
+
     print("The most commonly used start station is:", common_start_station)
     print("The most commonly used end station is:", common_end_station)
-    print("The most common start and end station trip is:", common_station_set)    
+    print("The most common start and end station trip is:", common_station_set)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)    
-    
+    print('-'*40)
+
 def trip_duration_stats(df, city):
     """Displays statistics on the total and average trip duration."""
 
@@ -145,7 +138,7 @@ def trip_duration_stats(df, city):
 
 def user_stats(df, city):
     """Displays statistics on bikeshare users.
-    
+
     Stats include:
     - Types of Users (Subscriber, One-Time Customers)
     - User Gender (Male, Female, Unknown)
@@ -156,16 +149,16 @@ def user_stats(df, city):
 
     print("When it comes to bike rentals, we have a few different ways of looking at our users...\n")
     print(df['User Type'].value_counts(dropna = False))
-    
+
     if city == "washington":
         print("For the city of Washington, it looks like we only have data regarding customer type. "\
         "For more information user types like Birth Year and Gender, try a different city.")
-        
+
     else:
         min_birth_year = df['Birth Year'].min()
         max_birth_year = df['Birth Year'].max()
         common_birth_year = df['Birth Year'].mode()[0]
-    
+
         print("\n")
         print(df['Gender'].value_counts(dropna = False))
 
@@ -173,14 +166,14 @@ def user_stats(df, city):
         print("Our oldest user was born in the year {}!".format(min_birth_year))
         print("By comparison, our youngest user was born in the year {}...Pretty crazy, huh?".format(max_birth_year))
         print("And to round us out, the most common birth year is {}.".format(common_birth_year))
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 def see_data(df, city):
     """Displays data for 5 lines of raw data and asks the user if they would like to see 5 more.
     User inputs 'yes' or 'no' to continue to review data in groups of 5"""
-    
+
     start_index = 0
     end_index = 5
     countby = 5
@@ -195,8 +188,7 @@ def see_data(df, city):
         show_more = input("\nWould you like to review more data? Enter yes or no.\n")
         if show_more.lower() != 'yes':
             break
-              
-                
+                              
 def main():
     while True:
         city, month, day = get_filters()

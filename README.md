@@ -1,15 +1,15 @@
 ### Date created
-Include the date you created this project and README file.
+Project and README created and udpdated on May 30, 2019 by Marisa Orozco
 
 ### Project Title
-Replace the Project Title
+Github Bikeshare Project
 
 ### Description
-Describe what your project is about and what it does
+This is the final project for the Programming for Data Science Nanodegree and uses a previous project exploring US Bikeshare data to test proficiency with Github. The US Bikeshare project utilizes python to ask for user inputs to explore bikeshare usage in one of three cities (NYC, Washington DC, Chicago) from data taken from the first half of 2017.
 
 ### Files used
-Include the files used
+bikeshare.py: main project file; requests user input on which city and date range to review
+<city>.csv: bikeshare datasets with the city name corresponding to the name of the file (in .gitignore)
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Credit to the makers of the Udacity course for the template in creating the template for the python file and the overall course!

@@ -14,6 +14,14 @@ Begin by running "python bikeshare.py" and the user will be prompted for city, m
   -Valid days are all days of the week (e.g. "Monday", "Tuesday"... user may select 1 or "all")
 More detailed information can be found within bikeshare.py
 
+Outputs:
+Using the filters selected by the user, the outputs will include the below:
+  -Most popular times to travel
+  -Most popular stations and routes
+  -Average travel time
+  -User statistics (user type, birth year, and gender; Washington only has user type available)
+  -Display 5 lines of data with the option for users to review more
+
 ### Files used
 bikeshare.py: main project file; requests user input on which city and date range to review
 <city>.csv: bikeshare datasets with the city name corresponding to the name of the file (in .gitignore)
